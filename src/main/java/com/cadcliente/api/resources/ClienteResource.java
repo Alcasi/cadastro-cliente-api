@@ -33,7 +33,7 @@ public class ClienteResource {
 	
 	@GetMapping("/")
 	public String paginaInicial() {
-		return "Teste de página inicial";
+		return "API REST de cadastro de clientes";
 	}
 	
 	@GetMapping("/clientes")
