@@ -31,6 +31,11 @@ public class ClienteResource {
 	@Autowired
 	ClienteRepository clienteRepository;
 	
+	@GetMapping("/")
+	public String paginaInicial() {
+		return "Teste de página inicial";
+	}
+	
 	@GetMapping("/clientes")
 	@ApiOperation(value="Este método lista todos os clientes")
 	public List<Cliente> listaClientes(){
