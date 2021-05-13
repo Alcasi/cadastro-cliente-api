@@ -40,16 +40,20 @@ public class ClienteResource {
 	@ApiOperation(value="Este método lista todos os clientes")
 	public List<Cliente> listaClientes(){
 		
-		List<Cliente> clientes = clienteRepository.findAll();
-		
-		if (clientes == null || clientes.isEmpty()) {
-			throw new ResourceNotFoundException("Nenhum cliente encontrado!");
+		try {
+			List<Cliente> clientes = clienteRepository.findAll();
+			
+			if (clientes == null || clientes.isEmpty()) {
+				throw new ResourceNotFoundException("Nenhum cliente encontrado!");
+			}
+			
+			return clientes;
+		} catch (Exception ex) {
+			throw new ResourceNotFoundException(ex);
 		}
-		
-		return clientes;
 	}
 
-	@GetMapping("/clientesAtivos")
+	@GetMapping("/clientes/ativos")
 	@ApiOperation(value="Este método lista todos os clientes ativos")
 	public List<Cliente> listaClientesAtivos(){
 		
@@ -63,7 +67,7 @@ public class ClienteResource {
 		
 	}
 	
-	@PostMapping("/clientes")
+	@PostMapping("/clientes/incluir")
 	@ApiOperation(value="Este método inclui um novo cliente")
 	public Cliente salvaCliente(@RequestBody Cliente cliente) {
 		try {
@@ -73,7 +77,7 @@ public class ClienteResource {
 		}
 	}
 
-	@DeleteMapping("/clientes")
+	@DeleteMapping("/clientes/remover")
 	@ApiOperation(value="Este método apaga um cliente")
 	public boolean deletaCliente() {
 		long id = 0;
@@ -90,7 +94,7 @@ public class ClienteResource {
 		
 	}
 
-	@PutMapping("/clientes")
+	@PutMapping("/clientes/atualizar")
 	@ApiOperation(value="Este método atualiza os dados de um cliente")
 	public Cliente atualizaCliente(@RequestBody Cliente cliente) {
 		try {
