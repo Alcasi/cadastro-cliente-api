@@ -1,25 +1,35 @@
 package com.cadcliente.api.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="tab_telefones")
 public class Telefone {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	private long telefone_id;
 	
 	private String telefone;
 
-	public long getId() {
-		return id;
+	@ManyToOne
+	@JoinColumn(name = "cliente_id", referencedColumnName = "cliente_id", nullable=false)
+	private Cliente cliente;
+	
+	public long getTelefone_id() {
+		return telefone_id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setTelefone_id(long telefone_id) {
+		this.telefone_id = telefone_id;
 	}
 
 	public String getTelefone() {
@@ -29,5 +39,14 @@ public class Telefone {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
 	
 }

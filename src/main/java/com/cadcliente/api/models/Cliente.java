@@ -2,7 +2,7 @@ package com.cadcliente.api.models;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,14 +13,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TAB_CLIENTES")
+@Table(name="tab_clientes")
 public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 3004571281940906442L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	private long cliente_id;
 
 	@Column(name = "NOME", nullable = false)
 	private String nome;
@@ -40,15 +40,15 @@ public class Cliente implements Serializable {
 	@Column(name = "CADASTRO_ATIVO", columnDefinition = "BOOLEAN DEFAULT TRUE")
 	private boolean cadastroAtivo;
 	
-	@OneToMany
-	private List<Telefone> telefones;
-	
-	public long getId() {
-		return id;
+	@OneToMany(mappedBy = "cliente")
+	private Set<Telefone> telefones;
+		
+	public long getCliente_id() {
+		return cliente_id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setCliente_id(long cliente_id) {
+		this.cliente_id = cliente_id;
 	}
 
 	public String getNome() {
@@ -99,11 +99,11 @@ public class Cliente implements Serializable {
 		this.cadastroAtivo = cadastroAtivo;
 	}
 
-	public List<Telefone> getTelefones() {
+	public Set<Telefone> getTelefones() {
 		return telefones;
 	}
 
-	public void setTelefones(List<Telefone> telefones) {
+	public void setTelefones(Set<Telefone> telefones) {
 		this.telefones = telefones;
 	}
 

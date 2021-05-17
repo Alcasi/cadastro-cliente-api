@@ -77,10 +77,10 @@ public class ClienteResource {
 		}
 	}
 
-	@DeleteMapping("/clientes/remover")
+	@DeleteMapping("/clientes/remover/{id}")
 	@ApiOperation(value="Este método apaga um cliente")
-	public boolean deletaCliente() {
-		long id = 0;
+	public boolean deletaCliente(@PathVariable long id) {
+
 		try {
 			clienteRepository.deleteById(id);
 			return true;
