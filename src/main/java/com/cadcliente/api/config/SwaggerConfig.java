@@ -22,7 +22,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.cadclientes.api"))
-                .paths(PathSelectors.regex("/api.*"))
+                .paths(PathSelectors.regex("/api/.*"))
                 .build()
                 .apiInfo(metaInfo());
     }
