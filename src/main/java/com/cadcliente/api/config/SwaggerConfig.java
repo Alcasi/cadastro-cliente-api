@@ -32,7 +32,7 @@ public class SwaggerConfig {
         ApiInfoBuilder apiInfo = new ApiInfoBuilder();
         apiInfo.contact(new Contact("Alvaro Campelo da Silva",
         							"https://www.linkedin.com/in/alvaro-campelo/", 
-        							"alvarocampelodasilva2gmail.com"));	
+        							"alvarocampelodasilva@gmail.com"));	
         apiInfo.description("API REST de cadastro de clientes");
         
         return apiInfo.build();
