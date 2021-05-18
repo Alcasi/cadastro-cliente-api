@@ -33,10 +33,10 @@ public class ClienteResource {
 	@Autowired
 	ClienteRepository clienteRepository;
 	
-	@GetMapping("/")
-	public String paginaInicial() {
-		return "API REST de cadastro de clientes";
-	}
+	/*
+	 * @GetMapping("/") public String paginaInicial() { return
+	 * "API REST de cadastro de clientes"; }
+	 */
 	
 	@GetMapping("/clientes")
 	@ApiOperation(value="Este método lista todos os clientes")
