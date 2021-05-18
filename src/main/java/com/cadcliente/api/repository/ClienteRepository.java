@@ -8,5 +8,8 @@ import com.cadcliente.api.models.Cliente;
 
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long>{
+	
 	List<Cliente> findByCadastroAtivo(boolean cadastroAtivo);
+	
+	
 }

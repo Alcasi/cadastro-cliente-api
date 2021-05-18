@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,7 +40,7 @@ public class ClienteResource {
 	
 	@GetMapping("/clientes")
 	@ApiOperation(value="Este método lista todos os clientes")
-	public List<Cliente> listaClientes(){
+	public ResponseEntity<List<Cliente>> listaClientes(){
 		
 		try {
 			List<Cliente> clientes = clienteRepository.findAll();
@@ -47,7 +49,8 @@ public class ClienteResource {
 				throw new ResourceNotFoundException("Nenhum cliente encontrado!");
 			}
 			
-			return clientes;
+			return new ResponseEntity<>(clientes, HttpStatus.CREATED);
+			
 		} catch (Exception ex) {
 			throw new ResourceNotFoundException(ex);
 		}
@@ -71,13 +74,16 @@ public class ClienteResource {
 	@ApiOperation(value="Este método inclui um novo cliente")
 	public Cliente salvaCliente(@RequestBody Cliente cliente) {
 		try {
-			return clienteRepository.save(cliente);
+			
+			Cliente cli = clienteRepository.save(cliente);
+			return cli;
+			
 		}catch (Exception ex) {
 			throw new ResourceNotFoundException(ex, "Erro ao incluir um cliente");
 		}
 	}
 
-	@DeleteMapping("/clientes/remover/{id}")
+	@DeleteMapping("/clientes/apagar/{id}")
 	@ApiOperation(value="Este método apaga um cliente")
 	public boolean deletaCliente(@PathVariable long id) {
 

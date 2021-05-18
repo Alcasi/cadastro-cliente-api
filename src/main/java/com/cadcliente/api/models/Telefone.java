@@ -1,6 +1,5 @@
 package com.cadcliente.api.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,8 +19,8 @@ public class Telefone {
 	
 	private String telefone;
 
-	@ManyToOne
-	@JoinColumn(name = "cliente_id", referencedColumnName = "cliente_id", nullable=false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cliente_id", nullable = false )
 	private Cliente cliente;
 	
 	public long getTelefone_id() {
